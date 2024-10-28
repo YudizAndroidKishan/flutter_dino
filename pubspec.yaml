@@ -1,7 +1,8 @@
 name: flutter_dino
 description: "Flutter package for seamless internet connectivity handling with custom widgets."
-version: 1.0.0
-homepage:
+version: 1.0.0+1
+homepage: https://github.com/YudizAndroidKishan/flutter_dino
+repository: https://github.com/YudizAndroidKishan/flutter_dino
 
 environment:
   sdk: '>=3.4.4 <4.0.0'
@@ -19,11 +20,11 @@ topics:
   - no-internet
   - connectivity-plus
   - flutter-dino
-  - no-internet
 
 screenshots:
   - description: Flutter package for seamless internet connectivity handling with custom widgets.
     path: screenshots/dino.png
+
 
 
 dependencies:
@@ -35,7 +36,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
+  flutter_lints: ^4.0.0
 
 flutter:
   assets:

@@ -82,7 +82,7 @@ FlutterDinoConfig(
 ```
 ## Demo
 
-<img src="https://github.com/YudizAndroidKishan/flutter_dino/blob/3ac6536f243249bcfba58a70eb82a3ea997ff4c0/screenshots/flutter_dino.gif" width="240"/> 
+<img src="https://raw.githubusercontent.com/YudizAndroidKishan/flutter_dino/refs/heads/main/screenshots/flutter_dino.gif" width="240"/> 
 
 ## License
 
