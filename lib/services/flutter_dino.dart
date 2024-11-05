@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dino/config/flutter_dino_config.dart';
+import 'package:flutter_dino/services/navigator_observer.dart';
 
 import 'dialog_services.dart';
 
@@ -12,6 +13,7 @@ class FlutterDino {
   late StreamSubscription<List<ConnectivityResult>> _connectivityStream;
   bool _isHavingInternet = true;
   final FlutterDinoConfig _config;
+  bool _needShowDialog = false;
 
   /// Whether the device currently has internet connectivity
   bool get hasInternet => _isHavingInternet;
@@ -24,6 +26,23 @@ class FlutterDino {
       );
     }
     return _instance!;
+  }
+
+  late final navigatorObserver = DinoNavigatorObserver(
+    onNavigationComplete: _handleNavigationComplete,
+  );
+
+  void _handleNavigationComplete() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_needShowDialog) {
+        if (!_isHavingInternet && _config.showNoInternetDialog) {
+          _needShowDialog = false;
+          DialogServices.instance.showNoInternetDialog();
+        } else {
+          DialogServices.instance.hideDialog();
+        }
+      }
+    });
   }
 
   /// Initializes the FlutterDino plugin with the provided configuration
@@ -79,8 +98,10 @@ class FlutterDino {
     _isHavingInternet = !hasNoInternet;
 
     if (!_isHavingInternet && _config.showNoInternetDialog) {
+      _needShowDialog = true;
       DialogServices.instance.showNoInternetDialog();
     } else {
+      _needShowDialog = false;
       DialogServices.instance.hideDialog();
     }
   }

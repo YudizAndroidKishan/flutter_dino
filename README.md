@@ -22,7 +22,7 @@ Add the following line to your `pubspec.yaml` file under `dependencies`:
 
 ```yaml
 dependencies:
-  flutter_dino: ^1.0.0
+  flutter_dino: latest_version
 ```
 
 Then run:
@@ -64,6 +64,9 @@ void main() async {
     MaterialApp(
       navigatorKey: navigatorKey,
       home: HomePage(),
+      navigatorObservers: [
+        FlutterDino.instance.navigatorObserver,
+      ],
     ),
   );
 }
