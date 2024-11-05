@@ -1,3 +1,4 @@
+import 'package:example/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dino/flutter_dino.dart';
 
@@ -45,7 +46,10 @@ Future<void> main() async {
 
       themeMode: ThemeMode.system,
       navigatorKey: navigatorKey, // Use the same navigatorKey here
-      home: Home(),
+      home: const FlutterDinoSplash(),
+      navigatorObservers: [
+        FlutterDino.instance.navigatorObserver,
+      ],
     ),
   );
 }
