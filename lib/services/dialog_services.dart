@@ -1,5 +1,6 @@
 // Singleton service to manage dialog
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dino/presentation/dino_provider.dart';
@@ -28,6 +29,19 @@ class DialogServices {
     required Widget dialog,
     bool barrierDismissible = true,
   }) async {
+    // Add safety check
+    if (_config.navigatorKey.currentContext == null) {
+      log(
+        'Cannot show dialog: No valid context available',
+        name: "Flutter Dino",
+      );
+      return null;
+    }
+
+    // Check if dialog is already showing
+    if (_config.navigatorKey.currentState?.canPop() ?? false) {
+      return null;
+    }
     return showDialog<T>(
       context: _config.navigatorKey.currentContext!,
       barrierDismissible: barrierDismissible,
